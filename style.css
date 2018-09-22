@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+.container {
+  width: 30%;
+  margin: 0px auto;
+}
+
+#slider {
+  width: 20%;
+  margin: 20px auto;
+}
+
