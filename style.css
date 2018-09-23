@@ -1,12 +1,55 @@
 @charset "UTF-8";
 
-.container {
+body {
+  background-color: teal;
+  color: white;
+  font-family: Halvetica, Arial, sans-sherif;
+  font-size: 87.5%;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.game {
+  width: 100%;
+  background-color: purple;
+  margin:-10px;
+  padding: 30px;
+}
+
+.pool {
+  border: solid 1px #aaa;
+  border-radius: 9px;
+  width: 256px;
+  height: 246px;
+  float: left;
+  background-color: slateblue;
+  padding: 3px 3px 3px 3px;
+}
+
+.drawPool {
+  float: right;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.drawPool .pool {
+  background-image: url(./ball.png);
+  background-size: cover;
+  font-weight: bold;
+  font-size: 58px;
+  color: black;
+  text-align: center;
+}
+
+
+
+/* .container {
   width: 30%;
   margin: 0px auto;
-}
+} */
 
-#slider {
+/* #slider {
   width: 20%;
   margin: 20px auto;
-}
-
+} */
