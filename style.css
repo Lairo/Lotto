@@ -18,12 +18,12 @@ body {
 
 .pool2 {
   color: black;
-  width: 70px;
+  width: 100px;
   height: 100px;
   padding: solid 1px #808080;
   background-color: white;
   display: inline-block;
-  border-radius: 10px;
+  border-radius: 50%;
   font-size: 36pt;
   text-align: center;
   margin: 3px;
@@ -68,14 +68,14 @@ body {
   right: 0;
 }
 
-.drawPool .pool {
+/* .drawPool .pool {
   background-image: url(./ball.png);
   background-size: cover;
   font-weight: bold;
   font-size: 58px;
   color: black;
   text-align: center;
-}
+} */
 
 
 

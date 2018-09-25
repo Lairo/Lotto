@@ -1,23 +1,5 @@
-/*
 
-
-The player selects 6 individual numbers from the range 1-59.
-
-6 Balls are then drawn randomly from the 59 balls available.
-
-Prizes are awarded for matching 3, 4, 5 and 6 Ball numbers.
-3 = 50
-4 = 100
-5 = 200
-6 = 500
-
-*/
-
-// 
-var values = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16',
-  '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35',
-  '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54',
-  '55', '56', '57', '58', '59']
+var values = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16','17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35','36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54','55', '56', '57', '58', '59']
 var drawPool = [];
 var players = [];
 var currentPlayer = 0;
@@ -34,8 +16,8 @@ function createDrawPool() {
 function createPlayers(num) {
   players = [];
   for (var i = 1; i <= num; i++) {
-    var selected = [];
-    var player = { ID: i, Selected: selected };
+    var selection = [];
+    var player = { ID: i, Selection: selection };
     players.push(player);
   }
 }
@@ -72,7 +54,7 @@ function start() {
   createPlayersUI();
   luckySelection();
   document.getElementById('player_' + currentPlayer).classList.add('active');
-  lucky.removeAttribute("disabled");
+  luckyBtn.removeAttribute("disabled");
 }
 
 
@@ -80,7 +62,7 @@ function luckySelection() {
   for (var i = 0; i < 1; i++) {
     for (var x = 0; x < players.length; x++) {
       var pool = drawPool.pop();
-      players[x].Slection.push(pool);
+      players[x].Selection.push(pool);
       renderPool(pool, x);
     }    
   }
@@ -93,7 +75,7 @@ function renderPool(pool, player) {
 }
 
 function getPoolUI(pool) {
-  var el = documennt.createElement('div');
+  var el = document.createElement('div');
   el.className = 'pool2'
   el.innerHTML = pool.Value + '';
   return el;
