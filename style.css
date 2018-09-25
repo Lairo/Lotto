@@ -16,17 +16,49 @@ body {
   padding: 30px;
 }
 
+.pool2 {
+  color: black;
+  width: 70px;
+  height: 100px;
+  padding: solid 1px #808080;
+  background-color: white;
+  display: inline-block;
+  border-radius: 10px;
+  font-size: 36pt;
+  text-align: center;
+  margin: 3px;
+
+}
+
+
 .pool {
   border: solid 1px #aaa;
   border-radius: 50%;
   width: 256px auto;
   height: 256px auto;
   float: right;
-
-  /* display: inline-block; */
   background-color: slateblue;
   font-size: 24pt;
   padding: 12px 15px 12px 15px;
+}
+
+.players {
+  float: left;
+  width: 600px;
+}
+
+.player{ 
+  width: 100%;
+  border: solid 2px #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  display: inline-block;
+  margin: 15%;
+  vertical-align: top;
+}
+
+.player.active {
+  border: solid 2px #1caff6;
 }
 
 .drawPool {
@@ -36,7 +68,7 @@ body {
   right: 0;
 }
 
-/* .drawPool .pool {
+.drawPool .pool {
   background-image: url(./ball.png);
   background-size: cover;
   font-weight: bold;
@@ -44,7 +76,7 @@ body {
   color: black;
   text-align: center;
 }
- */
+
 
 
 /* .container {

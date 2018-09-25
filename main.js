@@ -35,21 +35,21 @@ function createPlayers(num) {
   players = [];
   for (var i = 1; i <= num; i++) {
     var selected = [];
-    var player = { ID: i, selected: selected };
+    var player = { ID: i, Selected: selected };
     players.push(player);
   }
 }
 
-function createPlayerUI() {
+function createPlayersUI() {
   document.getElementById('players').innerHTML = '';
-  for (var i = 0; i < players.lenght; i++) {
+  for (var i = 0; i < players.length; i++) {
     var div_player = document.createElement('div');
     var div_playerid = document.createElement('div');
-    var_selection = document.createElement('div');
+    var div_selection = document.createElement('div');
     div_player.id = 'player_' + i;
     div_player.className = 'player';
     div_selection.id = 'selection_' + i;
-    div_playerid.innerHTML = player[i].ID;
+    div_playerid.innerHTML = players[i].ID;
     div_player.appendChild(div_selection);
     document.getElementById('players').appendChild(div_player);
   }
@@ -57,11 +57,11 @@ function createPlayerUI() {
 
 function mix59() {
   for (var i = 0; i < 1000; i++) {
-    var location1 = Math.floor((Math.random() * pool.length));
-    var location2 = Math.floor((Math.random() * pool.length));
-    var tmp = pool[location1];
-    pool[location1] = pool[location2];
-    pool[location2] = tmp;
+    var location1 = Math.floor((Math.random() * drawPool.length));
+    var location2 = Math.floor((Math.random() * drawPool.length));
+    var tmp = drawPool[location1];
+    drawPool[location1] = drawPool[location2];
+    drawPool[location2] = tmp;
   }
 }
 
@@ -70,46 +70,47 @@ function start() {
   mix59();
   createPlayers(1);
   createPlayersUI();
-  document.getElementById('player_' + currentPlayer).classList.add
-    ('active');
+  luckySelection();
+  document.getElementById('player_' + currentPlayer).classList.add('active');
   lucky.removeAttribute("disabled");
-
 }
 
 
 function luckySelection() {
   for (var i = 0; i < 1; i++) {
-    for (var x = 0; x < players.lenght; x++) {
+    for (var x = 0; x < players.length; x++) {
       var pool = drawPool.pop();
-      players[x].Pool.push(pool);
+      players[x].Slection.push(pool);
       renderPool(pool, x);
-    }
-    updatePool();
+    }    
   }
+  updatePool();
 }
 
 function renderPool(pool, player) {
-  var pool = document.getElementById('pool_' + player);
-  pool.appendChild(getPoolUI(pool));
+  var selection = document.getElementById('selection_' + player);
+  selection.appendChild(getPoolUI(pool));
 }
 
 function getPoolUI(pool) {
   var el = documennt.createElement('div');
+  el.className = 'pool2'
   el.innerHTML = pool.Value + '';
   return el;
-}
-
-function updatePool() {
-  document.getElementById('poolCount').innerHTML = deck.length;
 }
 
 
 function lucky() {
   var pool = drawPool.pop();
-  players[currentPlayer].selected.push(pool);
+  players[currentPlayer].Selection.push(pool);
   renderPool(pool, currentPlayer);
   updatePool();
 }
+
+function updatePool() {
+  document.getElementById('poolCount').innerHTML = drawPool.length;
+}
+
 
 window.addEventListener('load', function () {
   startBtn = document.getElementById("start");
