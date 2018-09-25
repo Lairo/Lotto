@@ -18,8 +18,8 @@ body {
 
 .pool2 {
   color: black;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   padding: solid 1px #808080;
   background-color: white;
   display: inline-block;
@@ -33,7 +33,7 @@ body {
 
 .pool {
   border: solid 1px #aaa;
-  border-radius: 50%;
+  border-radius: 60%;
   width: 256px auto;
   height: 256px auto;
   float: right;

@@ -5,6 +5,7 @@ var players = [];
 var currentPlayer = 0;
 var pickBtn, startBtn, luckyBtn;
 
+//this is creating the number selection pool
 function createDrawPool() {
   drawPool = [];
   for (var i = 0; i < values.length; i++) {
@@ -13,6 +14,7 @@ function createDrawPool() {
   }
 }
 
+// this initialising the  number of players depending on number of players (presently 1)
 function createPlayers(num) {
   players = [];
   for (var i = 1; i <= num; i++) {
@@ -21,6 +23,10 @@ function createPlayers(num) {
     players.push(player);
   }
 }
+
+// this function is in charge of displaying players pool dynamically
+// they are appending to one another and at the end they are into 
+// the players' div
 
 function createPlayersUI() {
   document.getElementById('players').innerHTML = '';
@@ -37,6 +43,8 @@ function createPlayersUI() {
   }
 }
 
+
+// it takes any number out of the pool and the swaps them; does this 1000 times
 function mix59() {
   for (var i = 0; i < 1000; i++) {
     var location1 = Math.floor((Math.random() * drawPool.length));
@@ -47,6 +55,7 @@ function mix59() {
   }
 }
 
+// starts when the start button is pressed and wakes up the entire code of main.js
 function start() {
   createDrawPool();
   mix59();
@@ -57,7 +66,8 @@ function start() {
   luckyBtn.removeAttribute("disabled");
 }
 
-
+// this initialises the initial numbers (one at a time) and takes it out of the draw pool,
+// pushes it to the players hand and removes it from the draw pool
 function luckySelection() {
   for (var i = 0; i < 1; i++) {
     for (var x = 0; x < players.length; x++) {
@@ -69,11 +79,14 @@ function luckySelection() {
   updatePool();
 }
 
+// it looks into the players hand and appends one ball to the player
 function renderPool(pool, player) {
   var selection = document.getElementById('selection_' + player);
   selection.appendChild(getPoolUI(pool));
 }
 
+// it takes a pool number object and returns a new html element (el)
+// displays the number
 function getPoolUI(pool) {
   var el = document.createElement('div');
   el.className = 'pool2'
@@ -81,7 +94,7 @@ function getPoolUI(pool) {
   return el;
 }
 
-
+// pop a number from the draw pool to the current player (numbers are pre-randomised in mix59 function)
 function lucky() {
   var pool = drawPool.pop();
   players[currentPlayer].Selection.push(pool);
@@ -89,11 +102,12 @@ function lucky() {
   updatePool();
 }
 
+// updates the counter
 function updatePool() {
   document.getElementById('poolCount').innerHTML = drawPool.length;
 }
 
-
+// this is where the main thread begins and it unlocks the buttons to be used
 window.addEventListener('load', function () {
   startBtn = document.getElementById("start");
   startBtn.addEventListener('click', start);
