@@ -12,7 +12,6 @@ for (let e = 1; e < 59 + 1; e++) {
   values.push(e);
 }
 
-
 //this is creating the number selection pool
 function createDrawPool() {
   drawPool = [];
@@ -34,7 +33,6 @@ function createPlayers(num) {
 // this function is in charge of displaying players pool dynamically
 // they are appending to one another and at the end they are into 
 // the players' div
-
 function createPlayersUI() {
   document.getElementById('players').innerHTML = '';
   for (var i = 0; i < players.length; i++) {
@@ -49,7 +47,6 @@ function createPlayersUI() {
     document.getElementById('players').appendChild(div_player);
   }
 }
-
 
 // it takes any number out of the pool and the swaps them; does this 1000 times
 function mix59() {
@@ -71,11 +68,9 @@ function begin() {
   currentPlayer = 0;
   sharedArray = [];
 
-
   document.getElementById('player_' + currentPlayer).classList.add('active');
   luckyBtn.removeAttribute("disabled");
   startBtn.removeAttribute("disabled");
-
   document.getElementById("poolCount").style.visibility = "hidden";
 }
 
@@ -113,10 +108,8 @@ function lucky() {
   if (players[0].Selection.length == 5) {
     luckyBtn.disabled = true;
     readyBtn.disabled = false;
-
   } else if (players[1].Selection.length == 5)
     luckyBtn.disabled = true;
-
   var pool = drawPool.pop();
   players[currentPlayer].Selection.push(pool);
   sharedArray.push(pool);
@@ -132,17 +125,18 @@ function ready() {
   startBtn.disabled = true;  
   createDrawPool();
   mix59();
+  picks1 = [];
   for (x = 0; x < 6; x++) {
     var pool = drawPool.pop();
     players[currentPlayer].Selection.push(pool);
+    picks1.push(pool);
     sharedArray.push(pool);
     renderPool(pool, currentPlayer);
     e++;
     updatePool();
   }
   evaluate(compare(players[0].Selection, players[1].Selection));
-  // compare(players[0].Selection, players[1].Selection);
-  console.log(compare(players[0].Selection, players[1].Selection));
+  evaluate(compare(picks, picks1));  
 }
 
 // The function compares two player arrays and pushes the numbers that match into single array
@@ -154,7 +148,6 @@ function compare(arr1, arr2) {
 
 // draws six balls for the player 
 function start() {
-
   createDrawPool();
   mix59();
   for (x = 0; x < 6; x++) {
@@ -168,16 +161,12 @@ function start() {
     renderPool(pool, currentPlayer);
     e++;
     updatePool();
-
   }
   luckyBtn.disabled = true;
   readyBtn.disabled = false;
   startBtn.disabled = true;
   luckyBtn.disabled = true;
   addBtn.disable = true;
-  // pickBtn.disabled = true;
-
-
 }
 
 //Scoring system, based on the number of the values withing the array 
@@ -198,26 +187,19 @@ function evaluate(item) {
   }
 }
 
-//TODO suppose to allow player to manualy insert numbers, under construction
-function pick() {
-  if (players[0].Selection.length == 5) {
-    luckyBtn.disabled = true;
-    readyBtn.disabled = false;
-
-
-  } else if (players[1].Selection.length == 5)
-    luckyBtn.disabled = true;
-    currentPlayer = 0;
-  
-    var pool = prompt("Choose a number: ", "");
-      
-    players[currentPlayer].Selection.push(pool);
+//TODO allows player to manualy insert numbers
+function pick() {   
+    picks = [];
+    for (var x = 0; x <6; x++){
+    var pool = prompt("Choose a number between 1-59: ", Number(""));      
+    picks.push(Number(pool));
     sharedArray.push(pool);
     renderPool(pool, currentPlayer);
     e++;  
-  updatePool();
-  console.log(players[0].Selection);
-  console.log(players[1].Selection);
+    if (x == 5){
+      readyBtn.disabled = false;
+    }    
+    }       
 }
 
 // updates the counter
@@ -237,6 +219,4 @@ window.addEventListener('load', function () {
   startBtn.addEventListener('click', start);
   addBtn = document.getElementById("inputText");
   addBtn.addEventListener('click', pick);
-
 });
-
