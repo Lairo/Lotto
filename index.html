@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="shortcut icon" href="#" />
   <title>Lotto</title>
-  
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="style.css">
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -17,25 +17,25 @@
 </head>
 
 <body>
-  
-  
-    <h1>Lotto</h1>    
-    <input type="button" class="btn btn-success" value="Begin/Reset" id="begin" />
-    <input type="button" class="btn btn-success" value="Start" id="start" disabled  />
 
-    <button class="btn btn-success" id="Add">Add</button onclick="pick()"><input type="text" name="number" id="inputText"/><p id="nText"></p>
-      
-    <input type="button" class="btn btn-success" value="Pick Number" id="pick" disabled  />    
-    <input type="button" class="btn btn-success" value="Lucky Dip" id="lucky" disabled  />
-    <br/><br/>
-    <input type="button" class="btn btn-warning" value="Ready!" id="ready" disabled  />
-    <br/><br/>
-    <div class="row"></div>
-    <div id="players" class="col"></div>
-    <div id="drawPool" class="drawPool"></div>
-      <div class="pool" id="poolCount">59</div>
-      <div class="score" id="scoreCount"></div>
-      <div class="status" id="status"></div>
+
+  <h1>Lotto</h1>
+  <input type="button" class="btn btn-success" value="Begin/Reset" id="begin" />
+  <input type="button" class="btn btn-success" value="Start" id="start" disabled />
+
+  <button class="btn btn-success" id="inputText" type="text">Pick</button onclick="pick()">
+  <p id="nText"></p>
+
+  <input type="button" class="btn btn-success" value="Lucky Dip" id="lucky" disabled />
+
+  <input type="button" class="btn btn-warning" value="Ready!" id="ready" disabled />
+  <br /><br />
+  <div class="row"></div>
+  <div id="players" class="col"></div>
+  <div id="drawPool" class="drawPool"></div>
+  <div class="pool" id="poolCount">59</div>
+  <div class="score" id="scoreCount"></div>
+  <div class="status" id="status"></div>
   </div>
   <script src="main.js"></script>
 </body>

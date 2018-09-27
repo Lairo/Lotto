@@ -5,10 +5,10 @@ var players = [];
 var currentPlayer = 0;
 var e = 0;
 var sharedArray = [];
-var addBtn, pickBtn, beginBtn, luckyBtn, readyBtn, startBtn;
+var addBtn, beginBtn, luckyBtn, readyBtn, startBtn;
 
 //filling our values number 59 gets generated here
-for (let e = 1; e < 10 + 1; e++) {
+for (let e = 1; e < 59 + 1; e++) {
   values.push(e);
 }
 
@@ -16,8 +16,7 @@ for (let e = 1; e < 10 + 1; e++) {
 //this is creating the number selection pool
 function createDrawPool() {
   drawPool = [];
-  for (var i = 0; i < values.length; i++) {
-    // var pool = { Value: values[i] };
+  for (var i = 0; i < values.length; i++) {   
     drawPool.push(values[i]);
   }
 }
@@ -76,7 +75,7 @@ function begin() {
   document.getElementById('player_' + currentPlayer).classList.add('active');
   luckyBtn.removeAttribute("disabled");
   startBtn.removeAttribute("disabled");
-  pickBtn.removeAttribute("disabled");
+
   document.getElementById("poolCount").style.visibility = "hidden";
 }
 
@@ -130,9 +129,7 @@ function ready() {
   currentPlayer = 1;
   luckyBtn.disabled = true;
   readyBtn.disabled = true;
-  startBtn.disabled = true;
-  pickBtn.disabled = true;
-  nText.disabled = true;  
+  startBtn.disabled = true;  
   createDrawPool();
   mix59();
   for (x = 0; x < 6; x++) {
@@ -152,32 +149,35 @@ function ready() {
 function compare(arr1, arr2) {
   return arr1.filter(
     item => arr1.includes(item) && arr2.includes(item)
-  )  
+  )
 }
 
 // draws six balls for the player 
 function start() {
-  
+
   createDrawPool();
   mix59();
   for (x = 0; x < 6; x++) {
     if (players[0].Selection.length == 5) {
       luckyBtn.disabled = true;
-      readyBtn.disabled = false; }    
+      readyBtn.disabled = false;
+    }
     var pool = drawPool.pop();
     players[currentPlayer].Selection.push(pool);
     sharedArray.push(pool);
     renderPool(pool, currentPlayer);
     e++;
-    updatePool(); 
-    
-}
+    updatePool();
+
+  }
   luckyBtn.disabled = true;
   readyBtn.disabled = false;
   startBtn.disabled = true;
-  pickBtn.disabled = true;
-  nText.disabled = true;
-  
+  luckyBtn.disabled = true;
+  addBtn.disable = true;
+  // pickBtn.disabled = true;
+
+
 }
 
 //Scoring system, based on the number of the values withing the array 
@@ -195,64 +195,29 @@ function evaluate(item) {
   } else if (item.length == 3) {
     document.getElementById("poolCount").style.visibility = "visible";
     return document.getElementById('poolCount').innerHTML = 'YOU WON 50 POINTS!';
-  } 
+  }
 }
 
 //TODO suppose to allow player to manualy insert numbers, under construction
 function pick() {
-  var choice = new Array(5);
+  if (players[0].Selection.length == 5) {
+    luckyBtn.disabled = true;
+    readyBtn.disabled = false;
 
-  for(count = 0; count < 5; count++)
-  {
-  	choice[count] = prompt("Choose a number: ", "");;
-  	document.write(choice[count]+ ", ");
-  }
+
+  } else if (players[1].Selection.length == 5)
+    luckyBtn.disabled = true;
+    currentPlayer = 0;
   
-  for (var i = 0; i < 1; i++) {
-    for (var x = 0; x < players.length; x++) {
-      pool = drawPool.pop();
-      players[x].Selection.push(pool);
-      renderPool(pool, x);
-    }
-  }
-  // updatePool();
-//   readyBtn.disabled = false;
-//   var myArr = [];
-//   var inputText = document.getElementById('inputText').value;
-
-//   myArr.push(inputText);
-//   var pval = "";
-//   var pool = prompt("Choose a number: ", "");
-// for (i = 0; i <= myArr.length; i++) {   
-//  values.push(e);
-//   pval = pval + myArr[i];
-  
-// }
-//   console.log(i);
-// document.getElementById('player_0').innerHTML = pool;
-
-// sharedArray.push(pool);
-// renderPool(pool, players[0].Selection);
-// e++;
-// updatePool();
-// luckyBtn.disabled = true;
-
-  // var inputText = document.getElementById('inputText').value;
-
-  // players[currentPlayer].Selection.push(inputText);
-  // var pval = "";
-  // for (x = 0; x < 6; x++) {
-
-  //   pval = pool + players[currentPlayer].Selection.values[i];
-  // }
-  // console.log(x);
-  // document.getElementById('player_0').innerHTML = pool;
-
-  // sharedArray.push(pool);
-  // renderPool(pool, currentPlayer);
-  // e++;
-  // updatePool();
-  // luckyBtn.disabled = true;
+    var pool = prompt("Choose a number: ", "");
+      
+    players[currentPlayer].Selection.push(pool);
+    sharedArray.push(pool);
+    renderPool(pool, currentPlayer);
+    e++;  
+  updatePool();
+  console.log(players[0].Selection);
+  console.log(players[1].Selection);
 }
 
 // updates the counter
@@ -263,17 +228,15 @@ function updatePool() {
 // this is where the main thread begins and it unlocks the buttons to be used
 window.addEventListener('load', function () {
   beginBtn = document.getElementById("begin");
-  beginBtn.addEventListener('click', begin);
-  pickBtn = document.getElementById("pick");
-  pickBtn.addEventListener('click', pick);
+  beginBtn.addEventListener('click', begin);  
   luckyBtn = document.getElementById("lucky");
   luckyBtn.addEventListener('click', lucky);
   readyBtn = document.getElementById("ready");
   readyBtn.addEventListener('click', ready);
   startBtn = document.getElementById("start");
   startBtn.addEventListener('click', start);
-  // addBtn = document.getElementById("add");
-  // addBtn.addEventListener('click', start);
+  addBtn = document.getElementById("inputText");
+  addBtn.addEventListener('click', pick);
 
 });
 
