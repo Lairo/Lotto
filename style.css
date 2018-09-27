@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 body {
-  background-color: teal;
+  background-color: black;
   color: white;
   font-family: Halvetica, Arial, sans-sherif;
   font-size: 87.5%;
@@ -10,7 +10,7 @@ body {
 }
 
 .game {
-  width: 98%;
+  width: 102%;
   background-color: purple;
   margin:-10px;
   padding: 30px;
@@ -35,14 +35,15 @@ body {
 
 
 .pool {
-  border: solid 1px #aaa;
-  border-radius: 60%;
+  border: solid 4px #aaa;
+  border-radius: 89%;
   width: 256px auto;
   height: 256px auto;
   float: right;
   background-color: slateblue;
   font-size: 24pt;
   padding: 12px 15px 12px 15px;
+  visibility: hidden ;
   
 }
 
@@ -51,7 +52,7 @@ body {
   width: 600px;
 }
 
-.player{ 
+.player { 
   width: 100%;
   border: solid 2px #ccc;
   border-radius: 10px;
@@ -61,8 +62,21 @@ body {
   vertical-align: top;
 }
 
-.player.active {
-  border: solid 2px #1caff6;
+#player_0 {
+  background-color: green;
+  float: left;
+  width: 37%;
+}
+
+#player_1 {
+  background-color: #FFC200;
+  float: right;
+  width: 37%;
+  
+}
+
+.player.focus {
+  border: solid 5px #1caff6;
 }
 
 .drawPool {
