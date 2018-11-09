@@ -1,5 +1,16 @@
 Lottery Game
+
 ---
+Constrtaint
+
+Create the game using only:
+Basic HTML5
+CSS + Bootsraps only improve the appearance
+JavaScript vanilla only.
+
+---
+Scenario
+
 Consider a lottery game where there are 59 balls numbered from 1 to 59.
 
 Rules 
